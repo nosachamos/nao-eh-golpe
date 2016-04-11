@@ -2,7 +2,9 @@
 	"manifest_version": 2,
 	"name": "Não vai ter golpe - VAI TER IMPEACHMENT!'",
 	"version": "1.0",
-	"description": "Substitui quaisquer menções de '#NaoVaiTerGolpe' por '#ImpeachmentJa', '#FicaDilma' por '#TchauQuerida', 'golpista' por 'legitimo', 'Não vai ter golpe' por 'Não vai ter golpe - VAI TER IMPEACHMENT!', e finalmente quaisquer outras menções da palavra 'golpe' por 'Impeachment'.",
+  "author": "Eduardo Born",
+  "icons": { "128": "icon128.png" },
+	"description": "Substitui quaisquer menções de '#NaoVaiTerGolpe' por '#ImpeachmentJa', '#FicaDilma' por '#TchauQuerida' e 'golpista' por 'legitimo'.",
 	"content_scripts": 
 	[
 		{
@@ -12,4 +14,3 @@
 		}
 	]
 }
-
