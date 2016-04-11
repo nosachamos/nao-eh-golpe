@@ -20,9 +20,3 @@ Exemplo
 ![](exemplo.png)
 
 
-Curtiu? 
--------
-
-Me manda um copo de café, sem o qual esta extensão não seria possível! :D
-
-Paypal: nosachamos@gmail.com
