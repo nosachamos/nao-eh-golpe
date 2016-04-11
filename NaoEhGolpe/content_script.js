@@ -1,7 +1,6 @@
 walk(document.body);
 
-function walk(node) 
-{	
+function walk(node) {	
 	var child, next;
 	
   if (node.tagName) {
@@ -10,14 +9,12 @@ function walk(node)
     }
   }
 
-	switch ( node.nodeType )  
-	{
+	switch (node.nodeType) {
 		case 1:  // Element
 		case 9:  // Document
 		case 11: // Document fragment
 			child = node.firstChild;
-			while ( child ) 
-			{
+			while (child) {
 				next = child.nextSibling;
 				walk(child);
 				child = next;
@@ -30,13 +27,35 @@ function walk(node)
 	}
 }
 
-function handleText(textNode) 
-{
+fireOnDomChange(200);
+
+function fireOnDomChange(delay) {
+    document.body.addEventListener('DOMSubtreeModified', fireOnDelay);
+
+    function fireOnDelay () {
+        if (typeof this.Timer == "number") {
+            clearTimeout (this.Timer);
+        }
+        this.Timer  = setTimeout (function() { fireActionFunction(); },
+                                    delay ? delay : 333
+                                 );
+    }
+
+    function fireActionFunction () {
+        document.body.removeEventListener('DOMSubtreeModified', fireOnDelay);
+        walk(document.body);
+        document.body.addEventListener('DOMSubtreeModified', fireOnDelay);
+    }
+}
+
+function handleText(textNode) {
 	var v = textNode.nodeValue;
 
 	v = v.replace(/\bNaoVaiTerGolpe\b/g, "ImpeachmentJá");
 	v = v.replace(/\bNAOVAITERGOLPE\b/g, "ImpeachmentJá");
 	v = v.replace(/\bnaovaitergolpe\b/g, "ImpeachmentJá");
+	v = v.replace(/\bNÃOVAITERGOLPE\b/g, "ImpeachmentJá");
+	v = v.replace(/\bnãovaitergolpe\b/g, "ImpeachmentJá");
 	v = v.replace(/\bNãoVaiTerGolpe\b/g, "ImpeachmentJá");
   
 	v = v.replace(/\bFicaDilma\b/g, "TchauQuerida");
@@ -55,9 +74,6 @@ function handleText(textNode)
 	v = v.replace(/\bNAO VAI TER GOLPE\b/g, "NAO VAI TER GOLPE - VAI TER IMPEACHMENT!");
 	v = v.replace(/\bNao vai ter Golpe\b/g, "Nao vai ter Golpe - VAI TER IMPEACHMENT!");
 	v = v.replace(/\bnao vai ter golpe\b/g, "nao vai ter golpe - VAI TER IMPEACHMENT!");
-	v = v.replace(/\bGOLPE\b/g, "IMPEACHMENT");
-	v = v.replace(/\bGolpe\b/g, "Impeachment");
-	v = v.replace(/\bgolpe\b/g, "impeachment");
   
 	textNode.nodeValue = v;
 }
